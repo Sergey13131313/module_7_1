@@ -19,9 +19,13 @@ class Shop:
         return file_str
 
     def add(self, *products):
+        file_str = self.get_products()
         file = open(self.__file_name, 'a')
         for x in products:
-            file.write(str(x) + '\n')
+            if x.name in file_str:
+                print(f'Продукт {x.name} уже есть в магазине')
+            else:
+                file.write(str(x) + '\n')
         file.close()
 
 
@@ -36,3 +40,5 @@ if __name__ == '__main__':
     s1.add(p1, p2, p3)
 
     print(s1.get_products())
+
+    s1.add(p2)
